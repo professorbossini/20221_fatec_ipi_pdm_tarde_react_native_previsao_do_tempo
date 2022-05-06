@@ -12,7 +12,8 @@ import {
   UNITS,
   CNT,
   APPID,
-  BASE_URL
+  BASE_URL,
+  PROTOCOL
 } from '@env'
 
 
@@ -21,6 +22,12 @@ export default function App() {
   const [previsoes, setPrevisoes] = useState([])
   const capturarCidade = (cidadeDigitada) => {
     setCidade(cidadeDigitada)
+  }
+
+  const obterPrevisoes= () => {
+    const endPoint = `${PROTOCOL}://${BASE_URL}?lang=${LANGUAGE}&units=${UNITS}&cnt=${CNT}&appid=${APPID}&q=${cidade}`
+
+    console.log(endPoint)
   }
   return (
     <View style={styles.containerView}>
@@ -33,6 +40,7 @@ export default function App() {
         />
         <Button 
           title="OK"
+          onPress={obterPrevisoes}
         />
       </View>
       <FlatList 
