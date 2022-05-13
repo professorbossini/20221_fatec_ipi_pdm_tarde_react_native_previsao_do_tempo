@@ -16,6 +16,8 @@ import {
   PROTOCOL
 } from '@env'
 
+import PrevisaoItem from './components/PrevisaoItem';
+
 
 export default function App() {
   const [cidade, setCidade] = useState('')
@@ -48,22 +50,25 @@ export default function App() {
           onPress={obterPrevisoes}
         />
       </View>
-      <FlatList 
-        data={previsoes}
-        renderItem={p => (
-          <Text>{JSON.stringify(p)}</Text>
-        )}
-      />   
+      {/* {item: {...}} */}
+      <View style={{alignItems: 'center'}}>
+        <FlatList 
+          data={previsoes}
+          renderItem={p => (
+            <PrevisaoItem previsao={p.item}/>
+          )}
+        />   
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   containerView: {
-    padding: 40,
+    padding: 40
   },
   entradaView: {
-    marginBottom: 8
+    marginBottom: 8,
   },
   cidadeTextInput: {
     padding: 12,
